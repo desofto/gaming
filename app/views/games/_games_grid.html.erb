@@ -1,4 +1,4 @@
-﻿<% index = 0 %>
+<% index = 0 %>
 <%= grid( @games_grid, show_filters: :no, allow_showing_all_records: false ) do |g|
   g.blank_slate  do
     content_tag :div, "No records found", class: 'well wice-grid-container', id: 'frmGames'
