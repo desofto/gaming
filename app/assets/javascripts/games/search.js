@@ -9,6 +9,7 @@
     function _btnSelect( btn ) {
       $(btn).closest('.btn-group').find('button').removeClass( 'btn-primary' );
       $(btn).addClass( 'btn-primary' );
+      $(btn).blur();
     }
     
     self.btnFilterAll.click( function() {
