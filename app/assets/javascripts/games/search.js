@@ -47,6 +47,14 @@
       } );
     }
     
+    $('#games-game-create').click( function() {
+      $.gaming.dlgGameCreate.open();
+    } );
+
+    $(form).parent().on( 'click', 'table tbody tr td button.delete', function() {
+      $.gaming.dlgGameDelete.open( $(this).attr('data-game-id') );
+    } );
+
     return self;
   }
   var classDialogGameCreate = function( dialog ) {
@@ -99,14 +107,8 @@
     $.gaming.frmGames = new classFormGames( '#frmGames' );
     $.gaming.dlgGameCreate = new classDialogGameCreate( $('#dlgGameCreate') );
     $.gaming.dlgGameDelete = new classDialogGameDelete( $('#dlgGameDelete') );
-    $('#games-game-create').click( function() {
-      $.gaming.dlgGameCreate.open();
-    } );
     $.gaming.dlgGameCreate.on( 'ok', function() {
       $.gaming.frmGames.reload();
-    } );
-    $('.games').on( 'click', 'button.delete', function() {
-      $.gaming.dlgGameDelete.open( $(this).attr('data-game-id') );
     } );
     $.gaming.dlgGameDelete.on( 'ok', function() {
       $.gaming.frmGames.reload();
