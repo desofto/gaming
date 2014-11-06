@@ -28,30 +28,16 @@
 
 <div class="row">
   <div class="span12">
-    <div class="games">
-      <% index = 0 %>
-      <%= grid( @games_grid, show_filters: :no, allow_showing_all_records: false ) do |g|
-        #g.blank_slate  do
-        #  content_tag :div, "No records found", class: 'well'
-        #end
-        
-        g.column  name: '#', html: { width: '5%' } do |game|
-          index += 1
-        end
+    Показывать
+    <%= select_tag "search-count", options_for_select( %w( 10 25 50 100 ), 10 ), style: "margin: 0 10px; width: 75px;" %>
+    строк
+    <%= text_field_tag "search-name", "", placeholder: "Поиск", class: "search pull-right", style: "height: 33px; width: 350px;" %>
+  </div>
+</div>
 
-        g.column  name: 'Название', attribute: 'name', html: { width: '70%' } do |game|
-          link_to game.name, game
-        end
-
-        g.column  name: 'Статус', attribute: 'status', html: { width: '15%' } do |game|
-          game.status_title
-        end
-        
-        g.column  name: '', html: { width: '10%', style: 'text-align: center;' } do |game|
-          button_tag "Delete", "data-game-id" => game.id.to_s, :class => "btn btn-mini btn-default delete"
-        end
-      end -%>
-    </div>
+<div class="row">
+  <div class="span12">
+    <%= render "games_grid" %>
   </div>
 </div>
 

@@ -5,6 +5,18 @@
     self.btnFilterAll = $('#games-search-filter-all');
     self.btnFilterActive = $('#games-search-filter-active');
     self.btnFilterDeleted = $('#games-search-filter-deleted');
+    
+    self.filterCount = $('#search-count');
+    self.filterCount.change( function() {
+      self.reload();
+    } );
+    self.filterName = $('#search-name');
+    self.filterName.keydown( function(evt) {
+      if( evt.keyCode === 13 ) {
+        self.reload();
+        evt.stopPropagation();
+      }
+    } );
 
     function _btnSelect( btn ) {
       $(btn).closest('.btn-group').find('button').removeClass( 'btn-primary' );
@@ -28,7 +40,11 @@
     var stFilter = 'all';
     self.reload = function( filter ) {
       if( filter !== undefined ) stFilter = filter;
-      $.gaming.gridLoad( form, { filter: stFilter } );
+      $.gaming.gridLoad( form, {
+        filter: stFilter,
+        count: self.filterCount.value(),
+        name: self.filterName.value()
+      } );
     }
     
     return self;
