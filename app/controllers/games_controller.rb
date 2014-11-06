@@ -9,13 +9,12 @@ class GamesController < ApplicationController
     else
       items = Game
     end
-    per_page = params[:count]
-    per_page = 10 unless per_page
-    
-    name = params[:name]
-    name = '' unless name
-    
-    @games_grid = initialize_grid( items, per_page: per_page, name: 'frmGames', conditions: [ "name like ?", "%"+name+"%" ] )
+    @games_grid = initialize_grid(
+      items,
+      per_page: params[:count] || 10,
+      name: 'frmGames',
+      conditions: [ "name like ?", "%" + ( params[:name] || "" ) + "%" ]
+    )
     if params[:ajax] == 'frmGames'
       render 'games/_games_grid', layout: false
     end
