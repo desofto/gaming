@@ -41,40 +41,16 @@
   </div>
 </div>
 
-<div class="modal fade" id="dlgGameCreate">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Создание игры</h4>
-      </div>
-      <div class="modal-body">
-        <% @game = Game.new %>
-        <%= form_for(@game) do |f| %>
-          <%= f.label :name, "Название игры:" %>
-          <%= f.text_field :name, errorCss: 'error' %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" onclick="javascript: $.gaming.dlgGameCreate.ok();">Create</button>
-      </div>
-    </div>
-  </div>
-</div>
+<%= modal( "dlgGameCreate", "Создание игры" ) do |block| %>
+  <% block.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
+  <% block.button "Create", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameCreate.ok();" %>
+  <% form_for( Game.new ) do |f| %>
+    <%= f.label :name, "Название игры:" %>
+    <%= f.text_field :name, errorCss: 'error' %>
+  <% end %>
+<% end %>
 
-<div class="modal fade" id="dlgGameDelete">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Удаление игры</h4>
-      </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" onclick="javascript: $.gaming.dlgGameDelete.ok();">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
+<%= modal( "dlgGameDelete", "Удаление игры" ) do |block| %>
+  <% block.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
+  <% block.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameDelete.ok();" %>
+<% end %>
