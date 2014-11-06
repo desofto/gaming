@@ -8,20 +8,12 @@
 <div class="row" style="margin-bottom: 12px;">
   <div class="span12">
     <div class="btn-group pull-left">
-      <button type="button" class="btn btn-default btn-primary" id="games-search-filter-all">
-        Все
-      </button>
-      <button type="button" class="btn btn-default" id="games-search-filter-active">
-        Активные
-      </button>
-      <button type="button" class="btn btn-default" id="games-search-filter-deleted">
-        Удаленные
-      </button>
+      <%= button_tag "Все", class: "btn btn-default btn-primary", id: "games-search-filter-all" %>
+      <%= button_tag "Активные", class: "btn btn-default", id: "games-search-filter-active" %>
+      <%= button_tag "Удаленные", class: "btn btn-default", id: "games-search-filter-deleted" %>
     </div>
     <div class="pull-right">
-      <button type="button" class="btn btn-default btn-primary" id="games-game-create">
-        <span class="glyphicon glyphicon-plus"></span>+ Создать
-      </button>
+      <%= button_tag "+ Создать", class: "btn btn-default btn-primary", id: "games-game-create" %>
     </div>
   </div>
 </div>
