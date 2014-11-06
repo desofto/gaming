@@ -1,0 +1,4 @@
+Удалить игру?
+<%= form_for( @game, remote: true, method: "delete" ) do |f| %>
+  <%= f.hidden_field :id %>
+<% end %>
