@@ -1,48 +1,97 @@
-<% provide( :title, 'Games' ) %>
-<div class="row">
+<% provide( :title, 'Game' ) %>
+<div class="row" style="margin-bottom: 12px;">
   <div class="span12">
-    <h3>Games</h3>
+    <h3>Game</h3>
   </div>
 </div>
 
 <div class="row" style="margin-bottom: 12px;">
-  <div class="span12">
-    <div class="btn-group pull-left">
-      <%= button_tag "Все", class: "btn btn-default btn-primary", id: "games-search-filter-all" %>
-      <%= button_tag "Активные", class: "btn btn-default", id: "games-search-filter-active" %>
-      <%= button_tag "Удаленные", class: "btn btn-default", id: "games-search-filter-deleted" %>
+  <div class="span1">
+    <span class="icon" style="margin-bottom: 12px;"></span>
+    <div class="clearfix"></div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-small btn-default"><span class="icon-cog"></span></button>
+      <button type="button" class="btn btn-small btn-defaultdropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a id="game-edit" data-game-id="<%= @game.id %>" href="javascript: void(0);">Редактировать</a></li>
+        <li><a id="game-delete" data-game-id="<%= @game.id %>" href="javascript: void(0);">Удалить</a></li>
+      </ul>
     </div>
-    <div class="pull-right">
-      <%= button_tag "+ Создать", class: "btn btn-default btn-primary", id: "games-game-create" %>
+  </div>
+  <div class="span11">
+    <div class="edit-container">
+      <div class="edit-label">Название:</div>
+      <div class="edit-data"><span id="game-name"><%= @game.name %></span></div>
+    </div>
+    <div class="edit-container">
+      <div class="edit-label">Статус:</div>
+      <div class="edit-data"><span class="badge" id="game-status"><%= @game.status_title %></span></div>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="span12">
-    Показывать
-    <%= select_tag "search-count", options_for_select( %w( 10 25 50 100 ), 10 ), style: "margin: 0 10px; width: 75px;" %>
-    строк
-    <%= text_field_tag "search-name", "", placeholder: "Поиск", class: "search pull-right", style: "height: 33px; width: 350px;" %>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active">
+    <a href="#assignments" role="tab" data-toggle="tab">
+      Участники
+    </a>
+  </li>
+  <li role="presentation">
+    <a href="#rounds" role="tab" data-toggle="tab">
+      Раунды
+    </a>
+  </li>
+  <li role="presentation">
+    <a href="#badges" role="tab" data-toggle="tab">
+      Бейджи
+    </a>
+  </li>
+  <li role="presentation">
+    <a href="#prizes" role="tab" data-toggle="tab">
+      Призы
+    </a>
+  </li>
+  <li role="presentation">
+    <a href="#rules" role="tab" data-toggle="tab">
+      Правила
+    </a>
+  </li>
+  <li role="presentation">
+    <a href="#news" role="tab" data-toggle="tab">
+      Новости
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="assignments">
+    assignments
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="rounds">
+    rounds
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="badges">
+    badges
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="prizes">
+    prizes
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="rules">
+    rules
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="news">
+    news
   </div>
 </div>
 
-<div class="row">
-  <div class="span12">
-    <%= render "games_grid" %>
-  </div>
-</div>
-
-<%= modal( "dlgGameCreate", "Создание игры" ) do |modal| %>
+<%= modal( "dlgGameEdit", "Редактирование игры", "game/edit" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
-  <% modal.button "Create", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameCreate.ok();" %>
-  <%= form_for( Game.new ) do |f| %>
-    <%= f.label :name, "Название игры:" %>
-    <%= f.text_field :name, errorCss: 'error' %>
-  <% end %>
+  <% modal.button "Save", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameEdit.ok();" %>
 <% end %>
 
-<%= modal( "dlgGameDelete", "Удаление игры" ) do |modal| %>
+<%= modal( "dlgGameDelete2", "Удаление игры", "game/delete" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
-  <% modal.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameDelete.ok();" %>
+  <% modal.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameDelete2.ok();" %>
 <% end %>

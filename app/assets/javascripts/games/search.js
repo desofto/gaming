@@ -60,14 +60,18 @@
   var classDialogGameCreate = function( dialog ) {
     var self = new $.moco.classDialog( dialog );
     
-    self.editName = self.field( '#game_name' );
-    self.editName.validate( function() {
-      return $(this).value().length > 0;
-    } );
+    self.init = function() {
+      self.editName = self.field( '#game_name' );
+      self.editName.validate( function() {
+        return $(this).value().length > 0;
+      } );
+    }
     
     self.open = function() {
-      self.editName.value('');
-      self.parent.open();
+      $(dialog).find('.modal-dialog .modal-content .modal-body').load( "/games/modal?view=" + $(dialog).attr('view'), function() {
+        self.init();
+        self.parent.open();
+      } );
     }
     
     self.ok = function() {
@@ -86,7 +90,7 @@
     var self = new $.moco.classDialog( dialog );
     
     self.open = function(id) {
-      $(dialog).find('.modal-dialog .modal-content .modal-body').load( "/games/modal?view=game/delete&game=" + id, function() {
+      $(dialog).find('.modal-dialog .modal-content .modal-body').load( "/games/modal?view=" + $(dialog).attr('view') + "&game=" + id, function() {
         self.parent.open();
       } );
     }
@@ -103,7 +107,7 @@
 
     return self;
   }
-  $(document).ready( function() {
+  $(document).on( 'ready page:load', ( function() {
     $.gaming.frmGames = new classFormGames( '#frmGames' );
     $.gaming.dlgGameCreate = new classDialogGameCreate( $('#dlgGameCreate') );
     $.gaming.dlgGameDelete = new classDialogGameDelete( $('#dlgGameDelete') );
@@ -113,5 +117,5 @@
     $.gaming.dlgGameDelete.on( 'ok', function() {
       $.gaming.frmGames.reload();
     } );
-  } );
+  } ) );
 }($) );

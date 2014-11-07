@@ -1,0 +1,5 @@
+<% game = Game.find( params[:game] ) %>
+<%= form_for( game ) do |f| %>
+  <%= f.label :name, "Название игры:" %>
+  <%= f.text_field :name, errorCss: 'error' %>
+<% end %>

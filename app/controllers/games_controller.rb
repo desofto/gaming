@@ -1,10 +1,16 @@
 class GamesController < ApplicationController
   def show
-    render text: "test"
+    @game = Game.find( params[:id] )
+    render "index"
+  end
+  
+  def update
+    game = Game.find( params[:id] )
+    game.update_attributes( params.require( :game ).permit( :name ) )
+    render text: "OK"
   end
 
   def index
-    @action = "search"
     case params[:filter]
     when 'active'
       items = Game.where( :status => Game::ACTIVE )
@@ -20,12 +26,13 @@ class GamesController < ApplicationController
       conditions: [ "name like ?", "%" + ( params[:name] || "" ) + "%" ]
     )
     if params[:ajax] == 'frmGames'
-      render 'games/_games_grid', layout: false
+      render "games/_games_grid", layout: false
+    else
+      render "search"
     end
   end
 
   def modal
-    @game = Game.find( params[:game] )
     view = params[:view].sub( "/", "/_" )
     render "games/modal/" + view, layout: false
   end
@@ -41,7 +48,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    game = Game.find( params[:id] )
+    game = Game.find( params[:game][:id] )
     game.destroy if game
     render text: "OK"
   end

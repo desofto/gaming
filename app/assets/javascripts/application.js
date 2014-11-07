@@ -16,7 +16,7 @@
 //= require bootstrap
 //= require classes
 //= require wice_grid
-//= requi re_tree .
+//= require_tree .
 
 ;( function($) {
   $.gaming = $.gaming || {};

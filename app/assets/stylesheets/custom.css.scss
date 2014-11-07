@@ -212,3 +212,17 @@ aside {
 input.search {
   background: url("lens.png") #ffffff no-repeat 95%;
 }
+
+.icon {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 1px solid #9aa3b5;
+  float: left;
+  height: 48px;
+  width: 48px;
+  background-color: #f6fbff;
+  color: #9aa3b5;
+}
