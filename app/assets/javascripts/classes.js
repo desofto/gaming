@@ -374,6 +374,10 @@ function include(src) {
     var self = this; var me = self.parent = {};
 
     var _fields = [];
+    // очистка списка полей
+    self.init = me.init = function() {
+      _fields = [];
+    }
     // поиск поля на форме и добавление его в список валидации
     self.field = me.field = function( sectionName, fieldName ) {
       var section;
@@ -564,6 +568,7 @@ function include(src) {
     self.open = me.open = function() {
       if( !self.fireEvent('open') ) return;
       //$(dialog).dialog('open');
+      self.init();
       $(dialog).modal('show');
       setTimeout( function() {
         $(dialog).find('.modal-dialog .modal-content .modal-body').find('input,textarea,select,button').filter(':visible:enabled:first').focus();

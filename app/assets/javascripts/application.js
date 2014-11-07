@@ -19,7 +19,7 @@
 //= require_tree .
 
 ;( function($) {
-  $.gaming = $.gaming || {};
+  $.gaming = {};
 }($) );
 
 ;( function($) {

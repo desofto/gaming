@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+  <body path="<%= params[:controller] %>/<%= params[:action] %>">
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |key, value| %>

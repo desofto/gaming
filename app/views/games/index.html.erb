@@ -91,7 +91,7 @@
   <% modal.button "Save", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameEdit.ok();" %>
 <% end %>
 
-<%= modal( "dlgGameDelete2", "Удаление игры", "game/delete" ) do |modal| %>
+<%= modal( "dlgGameDelete", "Удаление игры", "game/delete" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
-  <% modal.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameDelete2.ok();" %>
+  <% modal.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameDelete.ok();" %>
 <% end %>

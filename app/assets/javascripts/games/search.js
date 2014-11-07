@@ -61,6 +61,7 @@
     var self = new $.moco.classDialog( dialog );
     
     self.init = function() {
+      self.parent.init();
       self.editName = self.field( '#game_name' );
       self.editName.validate( function() {
         return $(this).value().length > 0;
@@ -69,7 +70,6 @@
     
     self.open = function() {
       $(dialog).find('.modal-dialog .modal-content .modal-body').load( "/games/modal?view=" + $(dialog).attr('view'), function() {
-        self.init();
         self.parent.open();
       } );
     }
@@ -108,14 +108,21 @@
     return self;
   }
   $(document).on( 'ready page:load', ( function() {
-    $.gaming.frmGames = new classFormGames( '#frmGames' );
-    $.gaming.dlgGameCreate = new classDialogGameCreate( $('#dlgGameCreate') );
-    $.gaming.dlgGameDelete = new classDialogGameDelete( $('#dlgGameDelete') );
-    $.gaming.dlgGameCreate.on( 'ok', function() {
-      $.gaming.frmGames.reload();
-    } );
-    $.gaming.dlgGameDelete.on( 'ok', function() {
-      $.gaming.frmGames.reload();
-    } );
+    if( $('body').attr('path') != 'games/index' ) return;
+    if( $('#frmGames').length > 0 ) {
+      $.gaming.frmGames = new classFormGames( '#frmGames' );
+    }
+    if( $('#dlgGameCreate').length > 0 ) {
+      $.gaming.dlgGameCreate = new classDialogGameCreate( '#dlgGameCreate' );
+      $.gaming.dlgGameCreate.on( 'ok', function() {
+        $.gaming.frmGames.reload();
+      } );
+    }
+    if( $('#dlgGameDelete').length > 0 ) {
+      $.gaming.dlgGameDelete = new classDialogGameDelete( $('#dlgGameDelete') );
+      $.gaming.dlgGameDelete.on( 'ok', function() {
+        $.gaming.frmGames.reload();
+      } );
+    }
   } ) );
 }($) );
