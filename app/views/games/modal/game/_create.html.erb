@@ -1,0 +1,4 @@
+<%= form_for( Game.new ) do |f| %>
+  <%= f.label :name, "Название игры:" %>
+  <%= f.text_field :name, errorCss: 'error' %>
+<% end %>

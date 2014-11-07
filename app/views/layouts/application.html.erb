@@ -4,12 +4,6 @@
     <title><%= yield(:title) %></title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%
-      @controller = params[:controller] unless @controller
-      @action = params[:action] unless @action
-    %>
-    <%= stylesheet_link_tag @controller+"/"+@action, media: "all" %>
-    <%= javascript_include_tag @controller+"/"+@action %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
