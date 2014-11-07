@@ -12,8 +12,7 @@ classDialogGameEdit = ( dialog ) ->
       self.parent.open()
 
   self.ok = ->
-    if !self.validate(true)
-      return
+    return unless self.validate(true)
     form = $(dialog).find('form')
     $.post form.attr('action'), form.serialize(), (answer) ->
       if answer == "OK"
@@ -30,7 +29,7 @@ classDialogGameDelete = ( dialog ) ->
       self.parent.open()
 
   self.ok = ->
-    return if !self.validate(true)
+    return unless self.validate(true)
     form = $(dialog).find 'form'
     $.post form.attr('action'), form.serialize(), (answer) ->
       if answer == "OK"
