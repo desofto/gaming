@@ -15,11 +15,11 @@
   def status_title
     case self.status
     when Game::ACTIVE
-      "Активная"
+      "Active"
     when Game::DELETED
-      "Удалена"
+      "Deleted"
     else
-      "Активная"
+      "Active"
     end
   end
   def destroy
