@@ -1,5 +1,5 @@
 <% game = Game.find( params[:game] ) %>
-Удалить игру?
+Delete the game?
 <%= form_for( game, remote: true, method: "delete" ) do |f| %>
   <%= f.hidden_field :id %>
 <% end %>

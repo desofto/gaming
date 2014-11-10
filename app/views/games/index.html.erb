@@ -15,18 +15,18 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a id="game-edit" data-game-id="<%= @game.id %>" href="javascript: void(0);">Редактировать</a></li>
-        <li><a id="game-delete" data-game-id="<%= @game.id %>" href="javascript: void(0);">Удалить</a></li>
+        <li><a id="game-edit" data-game-id="<%= @game.id %>" href="javascript: void(0);">Edit</a></li>
+        <li><a id="game-delete" data-game-id="<%= @game.id %>" href="javascript: void(0);">Delete</a></li>
       </ul>
     </div>
   </div>
   <div class="span11">
     <div class="edit-container">
-      <div class="edit-label">Название:</div>
+      <div class="edit-label">Name:</div>
       <div class="edit-data"><span id="game-name"><%= @game.name %></span></div>
     </div>
     <div class="edit-container">
-      <div class="edit-label">Статус:</div>
+      <div class="edit-label">Status:</div>
       <div class="edit-data"><span class="badge" id="game-status"><%= @game.status_title %></span></div>
     </div>
   </div>
@@ -35,32 +35,32 @@
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active">
     <a href="#assignments" role="tab" data-toggle="tab">
-      Участники
+      Participants
     </a>
   </li>
   <li role="presentation">
     <a href="#rounds" role="tab" data-toggle="tab">
-      Раунды
+      Rounds
     </a>
   </li>
   <li role="presentation">
     <a href="#badges" role="tab" data-toggle="tab">
-      Бейджи
+      Badges
     </a>
   </li>
   <li role="presentation">
     <a href="#prizes" role="tab" data-toggle="tab">
-      Призы
+      Prizes
     </a>
   </li>
   <li role="presentation">
     <a href="#rules" role="tab" data-toggle="tab">
-      Правила
+      Rules
     </a>
   </li>
   <li role="presentation">
     <a href="#news" role="tab" data-toggle="tab">
-      Новости
+      News
     </a>
   </li>
 </ul>
@@ -86,12 +86,12 @@
   </div>
 </div>
 
-<%= modal( "dlgGameEdit", "Редактирование игры", "game/edit" ) do |modal| %>
+<%= modal( "dlgGameEdit", "Edit the game", "game/edit" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
   <% modal.button "Save", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameEdit.ok();" %>
 <% end %>
 
-<%= modal( "dlgGameDelete", "Удаление игры", "game/delete" ) do |modal| %>
+<%= modal( "dlgGameDelete", "Delete the game", "game/delete" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
   <% modal.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameDelete.ok();" %>
 <% end %>

@@ -8,11 +8,11 @@
     index += 1
   end
 
-  g.column  name: 'Название', attribute: 'name', html: { width: '70%' } do |game|
+  g.column  name: 'Name', attribute: 'name', html: { width: '70%' } do |game|
     link_to game.name, game
   end
 
-  g.column  name: 'Статус', attribute: 'status', html: { width: '15%' } do |game|
+  g.column  name: 'Status', attribute: 'status', html: { width: '15%' } do |game|
     game.status_title
   end
   

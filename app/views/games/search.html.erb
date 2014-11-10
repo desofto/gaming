@@ -8,22 +8,22 @@
 <div class="row" style="margin-bottom: 12px;">
   <div class="span12">
     <div class="btn-group pull-left">
-      <%= button_tag "Все", class: "btn btn-default btn-primary", id: "games-search-filter-all" %>
-      <%= button_tag "Активные", class: "btn btn-default", id: "games-search-filter-active" %>
-      <%= button_tag "Удаленные", class: "btn btn-default", id: "games-search-filter-deleted" %>
+      <%= button_tag "All", class: "btn btn-default btn-primary", id: "games-search-filter-all" %>
+      <%= button_tag "Active", class: "btn btn-default", id: "games-search-filter-active" %>
+      <%= button_tag "Deleted", class: "btn btn-default", id: "games-search-filter-deleted" %>
     </div>
     <div class="pull-right">
-      <%= button_tag "+ Создать", class: "btn btn-default btn-primary", id: "games-game-create" %>
+      <%= button_tag "+ Create", class: "btn btn-default btn-primary", id: "games-game-create" %>
     </div>
   </div>
 </div>
 
 <div class="row">
   <div class="span12">
-    Показывать
+    Show by
     <%= select_tag "search-count", options_for_select( %w( 10 25 50 100 ), 10 ), style: "margin: 0 10px; width: 75px;" %>
-    строк
-    <%= text_field_tag "search-name", "", placeholder: "Поиск", class: "search pull-right", style: "height: 33px; width: 350px;" %>
+    lines
+    <%= text_field_tag "search-name", "", placeholder: "Filter", class: "search pull-right", style: "height: 33px; width: 350px;" %>
   </div>
 </div>
 
@@ -33,12 +33,12 @@
   </div>
 </div>
 
-<%= modal( "dlgGameCreate", "Создание игры", "game/create" ) do |modal| %>
+<%= modal( "dlgGameCreate", "Create game", "game/create" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
   <% modal.button "Create", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameCreate.ok();" %>
 <% end %>
 
-<%= modal( "dlgGameDelete", "Удаление игры", "game/delete" ) do |modal| %>
+<%= modal( "dlgGameDelete", "Delete the game", "game/delete" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
   <% modal.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameDelete.ok();" %>
 <% end %>
