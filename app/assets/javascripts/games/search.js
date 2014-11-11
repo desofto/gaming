@@ -1,5 +1,5 @@
 ;( function($) {
-  var classFormGames = function( form ) {
+  var classGridGames = function( form ) {
     var self = this;
     
     self.btnFilterAll = $('#games-search-filter-all');
@@ -109,20 +109,16 @@
   }
   $(document).on( 'ready page:load', ( function() {
     if( $('body').attr('path') != 'games/index' ) return;
-    if( $('#frmGames').length > 0 ) {
-      $.gaming.frmGames = new classFormGames( '#frmGames' );
-    }
-    if( $('#dlgGameCreate').length > 0 ) {
-      $.gaming.dlgGameCreate = new classDialogGameCreate( '#dlgGameCreate' );
-      $.gaming.dlgGameCreate.on( 'ok', function() {
-        $.gaming.frmGames.reload();
-      } );
-    }
-    if( $('#dlgGameDelete').length > 0 ) {
-      $.gaming.dlgGameDelete = new classDialogGameDelete( $('#dlgGameDelete') );
-      $.gaming.dlgGameDelete.on( 'ok', function() {
-        $.gaming.frmGames.reload();
-      } );
-    }
+    $.gaming.gridGames = new classGridGames( '#gridGames' );
+
+    $.gaming.dlgGameCreate = new classDialogGameCreate( '#dlgGameCreate' );
+    $.gaming.dlgGameCreate.on( 'ok', function() {
+      $.gaming.gridGames.reload();
+    } );
+
+    $.gaming.dlgGameDelete = new classDialogGameDelete( $('#dlgGameDelete') );
+    $.gaming.dlgGameDelete.on( 'ok', function() {
+      $.gaming.gridGames.reload();
+    } );
   } ) );
 }($) );

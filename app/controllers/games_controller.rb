@@ -1,7 +1,25 @@
 class GamesController < ApplicationController
   def show
     @game = Game.find( params[:id] )
-    render "index"
+
+    case params[:filter]
+    when 'active'
+      rounds = @game.rounds.where( :status => Round::ACTIVE )
+    when 'closed'
+      rounds = @game.rounds.where( :status => Round::CLOSED )
+    else
+      rounds = @game.rounds
+    end
+    @gridRounds = initialize_grid(
+      rounds,
+      per_page: params[:count] || 10,
+      name: 'gridGameRounds'
+    )
+    if params[:ajax] == 'gridGameRounds'
+      render "games/grid/index/_rounds", layout: false
+    else
+      render "index"
+    end
   end
   
   def update
@@ -13,20 +31,20 @@ class GamesController < ApplicationController
   def index
     case params[:filter]
     when 'active'
-      items = Game.where( :status => Game::ACTIVE )
+      games = Game.where( :status => Game::ACTIVE )
     when 'deleted'
-      items = Game.where( :status => Game::DELETED )
+      games = Game.where( :status => Game::DELETED )
     else
-      items = Game
+      games = Game
     end
-    @games_grid = initialize_grid(
-      items,
+    @gridGames = initialize_grid(
+      games,
       per_page: params[:count] || 10,
-      name: 'frmGames',
+      name: 'gridGames',
       conditions: [ "name like ?", "%" + ( params[:name] || "" ) + "%" ]
     )
-    if params[:ajax] == 'frmGames'
-      render "games/_games_grid", layout: false
+    if params[:ajax] == 'gridGames'
+      render "games/grid/_search", layout: false
     else
       render "search"
     end
@@ -38,8 +56,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    user_params = params.require( :game ).permit( :name )
-    @game = Game.new( user_params )
+    @game = Game.new( params.require( :game ).permit( :name ) )
     if @game.save
       render text: "OK"
     else

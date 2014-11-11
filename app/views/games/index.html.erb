@@ -33,12 +33,12 @@
 </div>
 
 <ul class="nav nav-tabs" role="tablist">
-  <li role="presentation" class="active">
+  <li role="presentation">
     <a href="#assignments" role="tab" data-toggle="tab">
       Participants
     </a>
   </li>
-  <li role="presentation">
+  <li role="presentation" class="active">
     <a href="#rounds" role="tab" data-toggle="tab">
       Rounds
     </a>
@@ -66,11 +66,11 @@
 </ul>
 
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane fade in active" id="assignments">
+  <div role="tabpanel" class="tab-pane fade" id="assignments">
     assignments
   </div>
-  <div role="tabpanel" class="tab-pane fade" id="rounds">
-    rounds
+  <div role="tabpanel" class="tab-pane fade in active" id="rounds">
+    <%= render "games/index/rounds" %>
   </div>
   <div role="tabpanel" class="tab-pane fade" id="badges">
     badges

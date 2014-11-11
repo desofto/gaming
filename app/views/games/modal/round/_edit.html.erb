@@ -1,0 +1,14 @@
+<%
+  if !params[:round].empty?
+    round = Round.find( params[:round] )
+  else
+    game = Game.find( params[:game] )
+    round = game.rounds.new
+  end
+%>
+<%= form_for( round ) do |f| %>
+  <%= f.hidden_field :game_id, errorCss: 'error' %>
+  <%= f.label :name, "Round name:" %>
+  <%= f.text_field :name, errorCss: 'error' %>
+  <%= f.select :status, [ [ 'Active', Round::ACTIVE ], [ 'Closed', Round::CLOSED ] ] %>
+<% end %>
