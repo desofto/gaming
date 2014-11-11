@@ -1,0 +1,23 @@
+<div class="row" style="margin-bottom: 12px;">
+  <div class="span12">
+    <div class="btn-group pull-left">
+      <%= button_tag "All", class: "btn btn-default btn-primary", id: "games-game-filter-all" %>
+      <%= button_tag "Active", class: "btn btn-default", id: "games-game-filter-active" %>
+      <%= button_tag "Closed", class: "btn btn-default", id: "games-game-filter-closed" %>
+    </div>
+    <div class="pull-right">
+      <%= button_tag "+ Add", class: "btn btn-default btn-primary", id: "games-game-round-add", 'data-game-id' => @game.id %>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 12px;">
+  <div class="span12">
+    <%= render "games/grid/index/rounds" %>
+  </div>
+</div>
+
+<%= modal( "dlgGameRoundEdit", [ "Create round", "Edit round" ], "round/edit" ) do |modal| %>
+  <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
+  <% modal.button "Save", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameRoundEdit.ok();", 'title-create' => "Create", 'title-edit' => "Save" %>
+<% end %>

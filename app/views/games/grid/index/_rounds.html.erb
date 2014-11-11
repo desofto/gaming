@@ -1,0 +1,20 @@
+<% index = 0 %>
+<%= grid( @gridRounds, show_filters: :no, allow_showing_all_records: false ) do |g|
+  g.blank_slate  do
+    content_tag :div, "No records found", class: 'well', id: 'gridGameRounds'
+  end
+  
+  g.column  name: '#', html: { width: '5%', style: 'text-align: center;' } do |round|
+    index += 1
+  end
+
+  g.column  name: 'Round', attribute: 'name', html: { width: '70%' }
+
+  g.column  name: 'Status', attribute: 'status', html: { width: '15%' } do |round|
+    round.status_title
+  end
+  
+  g.column  name: '', html: { width: '10%', style: 'text-align: center;' } do |round|
+    button_tag "Edit", "data-game-round-id" => round.id.to_s, :class => "btn btn-mini btn-default edit"
+  end
+end -%>

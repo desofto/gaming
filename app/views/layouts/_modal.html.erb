@@ -1,4 +1,10 @@
-<div class="modal hide fade" id="<%= name %>" view="<%= view %>">
+<div class="modal hide fade" id="<%= name %>" view="<%= view %>"
+<% if title.is_a?(Array) && title.size == 2 then %>
+  title-create="<%= title[0] %>"
+  title-edit="<%= title[1] %>"
+  <% title = title[0] %>
+<% end %>
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
