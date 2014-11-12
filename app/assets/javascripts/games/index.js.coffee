@@ -50,22 +50,23 @@ classGridGameRounds = ( grid ) ->
 
   btnFilterAll.click ->
     _btnSelect( this )
-    self.reload( 'all' )
+    self.reload( 'all', true )
 
   btnFilterActive.click ->
     _btnSelect( this )
-    self.reload( 'active' )
+    self.reload( 'active', true )
 
   btnFilterClosed.click ->
     _btnSelect( this )
-    self.reload( 'closed' )
+    self.reload( 'closed', true )
 
   _stFilter = 'all'
-  self.reload = ( filter ) ->
+  self.reload = ( filter, drop ) ->
     _stFilter = filter unless filter == undefined
+    url = window.location.href if drop
     $.gaming.gridLoad grid, {
       filter: _stFilter,
-    }
+    }, url
 
   $(grid).parent().on 'click', 'table tbody button.edit', ->
     $.gaming.dlgGameRoundEdit.open 0, $(this).attr('data-game-round-id')
