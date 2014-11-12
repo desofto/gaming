@@ -19,6 +19,7 @@ class Round < ActiveRecord::Base
   def status=( status )
     if status == Round::ACTIVE then
       for round in self.game.rounds
+        next if round.id == self.id
         round.status = Round::CLOSED
         round.save!
       end
