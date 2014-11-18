@@ -24,3 +24,7 @@
   background: #FEE !important;
   border-color: #C00 !important;
 }
+
+form {
+  margin-bottom: 0px;
+}
