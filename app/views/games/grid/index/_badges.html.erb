@@ -1,0 +1,21 @@
+<% index = 0 %>
+<%= grid( @gridBadges, show_filters: :no, allow_showing_all_records: false ) do |g|
+  g.blank_slate  do
+    content_tag :div, "No records found", class: 'well', id: 'gridGameBadges'
+  end
+  
+  g.column  name: '#', html: { width: 64, style: 'text-align: center;' } do |badge|
+    #index += 1
+    image_tag badge.img_url, class: "icon", width: 64, height: 64, style: "float: initial;"
+  end
+
+  g.column  name: 'Badge', attribute: 'name'
+  
+  g.column  name: '', html: { width: '10%', style: 'text-align: center;' } do |badge|
+    button_tag "Edit", "data-game-badge-id" => badge.id.to_s, :class => "btn btn-mini btn-default edit"
+  end
+
+  g.column  name: '', html: { width: '10%', style: 'text-align: center;' } do |badge|
+    button_tag "Delete", "data-game-badge-id" => badge.id.to_s, :class => "btn btn-mini btn-default delete"
+  end
+end -%>

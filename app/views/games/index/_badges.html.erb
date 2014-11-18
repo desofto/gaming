@@ -1,0 +1,24 @@
+<div class="row" style="margin-bottom: 12px;">
+  <div class="span12">
+    <h3 class="pull-left">Badges</h3>
+    <div class="pull-right">
+      <%= button_tag "+ Add", class: "btn btn-default btn-primary", id: "games-game-badge-add", 'data-game-id' => @game.id %>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 12px;">
+  <div class="span12">
+    <%= render "games/grid/index/badges" %>
+  </div>
+</div>
+
+<%= modal( "dlgGameBadgeEdit", [ "Create badge", "Edit badge" ], "badge/edit" ) do |modal| %>
+  <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
+  <% modal.button "Save", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameBadgeEdit.ok();", 'title-create' => "Create", 'title-edit' => "Save" %>
+<% end %>
+
+<%= modal( "dlgGameBadgeDelete", "Delete badge", "badge/delete" ) do |modal| %>
+  <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
+  <% modal.button "Delete", :class => "btn btn-primary", :onclick => "javascript: $.gaming.dlgGameBadgeDelete.ok();" %>
+<% end %>

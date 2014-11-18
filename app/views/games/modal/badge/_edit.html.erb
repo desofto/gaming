@@ -1,0 +1,26 @@
+<%
+  if !params[:badge].empty?
+    badge = Badge.find( params[:badge] )
+  else
+    game = Game.find( params[:game] )
+    badge = game.badges.new
+  end
+%>
+<%= form_for( badge, html: { target: 'badge-target' } ) do |f| %>
+  <%= f.hidden_field :game_id %>
+
+  <%= f.label :name, "Badge name:" %>
+  <%= f.text_field :name, errorCss: 'error' %>
+
+  <%= f.label :description, "Description:" %>
+  <%= f.text_area :description, errorCss: 'error' %>
+
+  <%= f.label :img_url, "Image:" %>
+  <%= f.text_field :img_url, errorCss: 'error' %>
+
+  <%= f.label :img_url, "Upload:" %>
+  <%= f.file_field :img_upload %>
+  </div>
+<% end %>
+
+<iframe name="badge-target" id="badge-target" style="display: none;"></iframe>
