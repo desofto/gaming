@@ -10,7 +10,8 @@ classDialogGameBadgeEdit = ( dialog ) ->
       $(this).value().length > 0
       
     $('#badge-target').load ->
-      self.parent.ok()
+      answer = $('#badge-target').contents().find('body').text()
+      self.parent.ok() if answer == "OK"
 
   self.open = ( gameId, badgeId ) ->
     gameId = '' if gameId == undefined

@@ -12,10 +12,7 @@
   g.column  name: 'Badge', attribute: 'name'
   
   g.column  name: '', html: { width: '10%', style: 'text-align: center;' } do |badge|
-    button_tag "Edit", "data-game-badge-id" => badge.id.to_s, :class => "btn btn-mini btn-default edit"
-  end
-
-  g.column  name: '', html: { width: '10%', style: 'text-align: center;' } do |badge|
-    button_tag "Delete", "data-game-badge-id" => badge.id.to_s, :class => "btn btn-mini btn-default delete"
+    button_tag( "Edit", "data-game-badge-id" => badge.id.to_s, :class => "btn btn-mini btn-default edit" ) +
+    button_tag( "Delete", "data-game-badge-id" => badge.id.to_s, :class => "btn btn-mini btn-default delete" )
   end
 end -%>
