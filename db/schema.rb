@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105123906) do
+ActiveRecord::Schema.define(version: 20141117170130) do
+
+  create_table "badges", force: true do |t|
+    t.integer  "game_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "img_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "badges", ["game_id"], name: "index_badges_on_game_id"
 
   create_table "games", force: true do |t|
     t.string   "name"

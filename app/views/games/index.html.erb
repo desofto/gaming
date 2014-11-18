@@ -38,12 +38,12 @@
       Participants
     </a>
   </li>
-  <li role="presentation" class="active">
+  <li role="presentation">
     <a href="#rounds" role="tab" data-toggle="tab">
       Rounds
     </a>
   </li>
-  <li role="presentation">
+  <li role="presentation" class="active">
     <a href="#badges" role="tab" data-toggle="tab">
       Badges
     </a>
@@ -69,11 +69,11 @@
   <div role="tabpanel" class="tab-pane fade" id="assignments">
     assignments
   </div>
-  <div role="tabpanel" class="tab-pane fade in active" id="rounds">
+  <div role="tabpanel" class="tab-pane fade" id="rounds">
     <%= render "games/index/rounds" %>
   </div>
-  <div role="tabpanel" class="tab-pane fade" id="badges">
-    badges
+  <div role="tabpanel" class="tab-pane fade in active" id="badges">
+    <%= render "games/index/badges" %>
   </div>
   <div role="tabpanel" class="tab-pane fade" id="prizes">
     prizes

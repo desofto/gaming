@@ -2,22 +2,16 @@ class GamesController < ApplicationController
   def show
     @game = Game.find( params[:id] )
 
-    case params[:filter]
-    when 'active'
-      rounds = @game.rounds.where( :status => Round::ACTIVE )
-    when 'closed'
-      rounds = @game.rounds.where( :status => Round::CLOSED )
-    else
-      rounds = @game.rounds
-    end
-    @gridRounds = initialize_grid(
-      rounds,
-      per_page: params[:count] || 10,
-      name: 'gridGameRounds'
-    )
-    if params[:ajax] == 'gridGameRounds'
+    case params[:ajax]
+    when 'gridGameRounds'
+      @gridRounds = gridRounds( params[:filter], params[:count] )
       render "games/grid/index/_rounds", layout: false
+    when 'gridGameBadges'
+      @gridBadges = gridBadges()
+      render "games/grid/index/_badges", layout: false
     else
+      @gridRounds = gridRounds()
+      @gridBadges = gridBadges()
       render "index"
     end
   end
@@ -69,4 +63,30 @@ class GamesController < ApplicationController
     game.destroy if game
     render text: "OK"
   end
+  
+  private
+    def gridRounds( filter = 'all', count = 10 )
+      case filter
+      when 'active'
+        rounds = @game.rounds.where( :status => Round::ACTIVE )
+      when 'closed'
+        rounds = @game.rounds.where( :status => Round::CLOSED )
+      else
+        rounds = @game.rounds
+      end
+      initialize_grid(
+        rounds,
+        per_page: count || 10,
+        name: 'gridGameRounds'
+      )
+    end
+
+    def gridBadges
+      badges = @game.badges
+      initialize_grid(
+        badges,
+        per_page: 10,
+        name: 'gridGameBadges'
+      )
+    end
 end
