@@ -18,7 +18,7 @@ module ModalHelper
           (
             content_tag :div, class: "modal-header" do
               (
-                content_tag :button, type: "button", class: "close", 'data-dismiss' => "modal" do
+                button_tag type: "button", class: "close", 'data-dismiss' => "modal" do
                   content_tag :span, 'aria-hidden' => true do
                     "&times;".html_safe
                   end
