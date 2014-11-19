@@ -15,36 +15,29 @@ module ModalHelper
     content_tag :div, opts do
       content_tag :div, class: "modal-dialog" do
         content_tag :div, class: "modal-content" do
-          res = []
-          item = content_tag :div, class: "modal-header" do
-            res2 = []
-            item = content_tag :button, type: "button", class: "close", 'data-dismiss' => "modal" do
-              content_tag :span, 'aria-hidden' => true do
-                "&times;".html_safe
-              end
+          (
+            content_tag :div, class: "modal-header" do
+              (
+                content_tag :button, type: "button", class: "close", 'data-dismiss' => "modal" do
+                  content_tag :span, 'aria-hidden' => true do
+                    "&times;".html_safe
+                  end
+                end
+              ) + (
+                content_tag :h4, class: "modal-title" do
+                  title
+                end
+              )
             end
-            res2.push item
-
-            item = content_tag :h4, class: "modal-title" do
-              title
+          ) + (
+            content_tag :div, class: "modal-body" do
+              capture( self, &block )
             end
-            res2.push item
-
-            res2.join.html_safe
-          end
-          res.push item
-
-          item = content_tag :div, class: "modal-body" do
-            capture( self, &block )
-          end
-          res.push item
-
-          item = content_tag :div, class: "modal-footer" do
-            @buttons.join.html_safe
-          end
-          res.push item
-
-          res.join.html_safe
+          ) + (
+            content_tag :div, class: "modal-footer" do
+              @buttons.join.html_safe
+            end
+          )
         end
       end
     end
