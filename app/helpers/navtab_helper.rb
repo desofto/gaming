@@ -4,34 +4,27 @@ module NavtabHelper
   def navtab( name, &block )
     @tabs = []
     yield( self )
-    res = []
-    item = content_tag :ul, class: "nav nav-tabs", role: "tablist", id: name do
-      result = []
-      for tab in @tabs
-        opts = { role: "presentation" }
-        opts[:class] = 'active' if tab[:options][:active]
-        item = content_tag :li, opts do
-          content_tag :a, href: "#" + tab[:name], role: "tab", 'data-toggle' => "tab" do
-            tab[:caption]
+    (
+      content_tag :ul, class: "nav nav-tabs", role: "tablist", id: name do
+        @tabs.collect do |tab|
+          opts = { role: "presentation" }
+          opts[:class] = 'active' if tab[:options][:active]
+          content_tag :li, opts do
+            content_tag :a, href: "#" + tab[:name], role: "tab", 'data-toggle' => "tab" do
+              tab[:caption]
+            end
           end
-        end
-        result.push item
+        end.join.html_safe
       end
-      result.join.html_safe
-    end
-    res.push item
-    item = content_tag :div, class: "tab-content" do
-      result = []
-      for tab in @tabs
-        item = content_tag :div, role: "tabpanel", class: "tab-pane fade" + ( tab[:options][:active] ? " in active" : "" ), id: tab[:name]  do
-          tab[:content]
-        end
-        result.push item
+    ) + (
+      content_tag :div, class: "tab-content" do
+        @tabs.collect do |tab|
+          content_tag :div, role: "tabpanel", class: "tab-pane fade" + ( tab[:options][:active] ? " in active" : "" ), id: tab[:name]  do
+            tab[:content]
+          end
+        end.join.html_safe
       end
-      result.join.html_safe
-    end
-    res.push item
-    res.join.html_safe
+    )
   end
   
   def tab( name, caption, options = {}, &block )
