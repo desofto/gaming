@@ -32,59 +32,26 @@
   </div>
 </div>
 
-<ul class="nav nav-tabs" role="tablist">
-  <li role="presentation">
-    <a href="#assignments" role="tab" data-toggle="tab">
-      Participants
-    </a>
-  </li>
-  <li role="presentation">
-    <a href="#rounds" role="tab" data-toggle="tab">
-      Rounds
-    </a>
-  </li>
-  <li role="presentation" class="active">
-    <a href="#badges" role="tab" data-toggle="tab">
-      Badges
-    </a>
-  </li>
-  <li role="presentation">
-    <a href="#prizes" role="tab" data-toggle="tab">
-      Prizes
-    </a>
-  </li>
-  <li role="presentation">
-    <a href="#rules" role="tab" data-toggle="tab">
-      Rules
-    </a>
-  </li>
-  <li role="presentation">
-    <a href="#news" role="tab" data-toggle="tab">
-      News
-    </a>
-  </li>
-</ul>
-
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane fade" id="assignments">
+<%= navtab "tab-game" do |navtab| %>
+  <% navtab.tab "assignments", "Participants" do %>
     assignments
-  </div>
-  <div role="tabpanel" class="tab-pane fade" id="rounds">
+  <% end %>
+  <% navtab.tab "rounds", "Rounds" do %>
     <%= render "games/index/rounds" %>
-  </div>
-  <div role="tabpanel" class="tab-pane fade in active" id="badges">
+  <% end %>
+  <% navtab.tab "badges", "Badges", active: true do %>
     <%= render "games/index/badges" %>
-  </div>
-  <div role="tabpanel" class="tab-pane fade" id="prizes">
+  <% end %>
+  <% navtab.tab "prizes", "Prizes" do %>
     prizes
-  </div>
-  <div role="tabpanel" class="tab-pane fade" id="rules">
+  <% end %>
+  <% navtab.tab "rules", "Rules" do %>
     rules
-  </div>
-  <div role="tabpanel" class="tab-pane fade" id="news">
+  <% end %>
+  <% navtab.tab "news", "News" do %>
     news
-  </div>
-</div>
+  <% end %>
+<% end %>
 
 <%= modal( "dlgGameEdit", "Edit the game", "game/edit" ) do |modal| %>
   <% modal.button "Cancel", :class => "btn btn-default", "data-dismiss" => "modal" %>
