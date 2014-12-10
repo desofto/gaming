@@ -7,9 +7,9 @@ gem 'wice_grid'
 gem 'execjs'
 gem 'therubyracer',  platforms: :ruby
 
-group :production do
-  gem 'mysql'
-end
+#group :production do
+#  gem 'mysql'
+#end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
