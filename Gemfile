@@ -7,14 +7,12 @@ gem 'wice_grid'
 gem 'execjs'
 gem 'therubyracer',  platforms: :ruby
 
-#group :production do
-#  gem 'mysql'
-#end
+gem 'pg', '0.15.1', group: [ :production ]
+gem 'sqlite3', group: [ :development, :test ]
+#gem 'mysql'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
