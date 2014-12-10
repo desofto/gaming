@@ -36,10 +36,10 @@
   <% navtab.tab "assignments", "Participants" do %>
     assignments
   <% end %>
-  <% navtab.tab "rounds", "Rounds" do %>
+  <% navtab.tab "rounds", "Rounds", active: true do %>
     <%= render "games/index/rounds" %>
   <% end %>
-  <% navtab.tab "badges", "Badges", active: true do %>
+  <% navtab.tab "badges", "Badges" do %>
     <%= render "games/index/badges" %>
   <% end %>
   <% navtab.tab "prizes", "Prizes" do %>
