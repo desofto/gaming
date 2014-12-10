@@ -7,6 +7,8 @@ gem 'wice_grid'
 gem 'execjs'
 gem 'therubyracer',  platforms: :ruby
 
+gem 'rails_on_heroku', group: [ :production ]
+
 gem 'pg', '0.15.1', group: [ :production ]
 gem 'sqlite3', group: [ :development, :test ]
 #gem 'mysql'
